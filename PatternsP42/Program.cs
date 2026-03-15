@@ -244,15 +244,15 @@ Action <IPizza> printPizzaInfo = p => Console.WriteLine(p.GetDescription() + " c
 
 // Фасад (Facade)
 
-var clientCode = new ClientCode(new ComplexLibraryFacade());
-clientCode.Execute();
+//var clientCode = new ClientCode(new ComplexLibraryFacade());
+//clientCode.Execute();
 
-var clientCode2 = new ClientCode(new ComplexLibrary2Facade());
-clientCode2.Execute();
+//var clientCode2 = new ClientCode(new ComplexLibrary2Facade());
+//clientCode2.Execute();
 
 
 
-// Легковаговик (Flyweight)
+// Легковаговик (Flyweight) Cache
 
 
 
@@ -260,5 +260,29 @@ clientCode2.Execute();
 
 
 // Замісник (Proxy)
+
+void ClientCode(IDatabase database)
+{
+    var now = DateTime.Now;
+
+    for (int i = 0; i < 5; i++)
+    {
+        var data = database.GetData("key1"); // Simulate multiple requests for the same keys
+        Console.WriteLine(data);
+    }
+
+    Console.WriteLine("Time taken: " + (DateTime.Now - now).TotalSeconds + " seconds");
+}
+
+
+
+
+var database = new LoggingDatabaseProxy(new DatabaseProxy(new Lazy<IDatabase>(() => new Database())));
+//var testDatabaseProxy = new LoggingDatabaseProxy(new TestDatabaseProxy());
+ClientCode(database);
+
+
+
+
 
 
