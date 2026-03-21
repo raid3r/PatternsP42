@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using PatternsP42.Behavioral;
+using PatternsP42.Examples;
 using PatternsP42.Structural;
 
 
@@ -261,28 +263,103 @@ Action <IPizza> printPizzaInfo = p => Console.WriteLine(p.GetDescription() + " c
 
 // Замісник (Proxy)
 
-void ClientCode(IDatabase database)
-{
-    var now = DateTime.Now;
+//void ClientCode(IDatabase database)
+//{
+//    var now = DateTime.Now;
 
-    for (int i = 0; i < 5; i++)
-    {
-        var data = database.GetData("key1"); // Simulate multiple requests for the same keys
-        Console.WriteLine(data);
-    }
+//    for (int i = 0; i < 5; i++)
+//    {
+//        var data = database.GetData("key1"); // Simulate multiple requests for the same keys
+//        Console.WriteLine(data);
+//    }
 
-    Console.WriteLine("Time taken: " + (DateTime.Now - now).TotalSeconds + " seconds");
+//    Console.WriteLine("Time taken: " + (DateTime.Now - now).TotalSeconds + " seconds");
+//}
+
+
+
+
+//var database = new LoggingDatabaseProxy(new DatabaseProxy(new Lazy<IDatabase>(() => new Database())));
+////var testDatabaseProxy = new LoggingDatabaseProxy(new TestDatabaseProxy());
+//ClientCode(database);
+
+
+/*
+У вашій системі є стара підсистема для відправки повідомлень клієнтам через різні канали. Кожен канал має свій клас і свій набір методів:
+public class SmsService { 
+    public void SendSms(string phone, string text) { ... }
+    public bool CheckDelivery(string messageId) { ... }
 }
 
+public class EmailService { 
+    public void SendEmail(string email, string subject, string body) { ... }
+    public void AddAttachment(string messageId, byte[] file) { ... }
+}
+
+public class PushService { 
+    public void SendPush(string deviceToken, string title, string body) { ... }
+    public void SetBadge(string deviceToken, int count) { ... }
+}
+
+Створити клас NotificationFacade, який надасть зручний єдиний інтерфейс 
+для найбільш поширених сценаріїв:
+
+Відправити просте текстове повідомлення (вибирає канал автоматично або за пріоритетом)
+Відправити повідомлення з темою (для email) або з заголовком (для push)
+Відправити термінове push-повідомлення + sms дублювання
+Отримати статус доставки (незалежно від каналу)
+
+var notificationFacade = new NotificationFacade(new SmsService(), new EmailService(), new PushService());
+
+class User {Email, DeviceToken, Phone}
+
+
+notificationFacade.SendSimpleMessage("Hello, this is a simple message.");
+// смс + пуш
+notificationFacade.SendWithTitle("Title!", "text");
+// пуш + емейл
+notificationFacade.SendUrgentPushWithSms("Urgent!", "This is an urgent message.");
+// пуш
 
 
 
-var database = new LoggingDatabaseProxy(new DatabaseProxy(new Lazy<IDatabase>(() => new Database())));
-//var testDatabaseProxy = new LoggingDatabaseProxy(new TestDatabaseProxy());
-ClientCode(database);
 
 
 
 
+*/
 
+
+
+
+//var notificationFacade = new NotificationFacade();
+
+//notificationFacade.SendSimpleMessage("Hello, this is a simple message.");
+
+
+
+/*
+ * Поведінкові патерни (Behavioral Patterns)
+ * 
+ * 
+ * - Chain of Responsibility (Ланцюг відповідальності)
+ * - Command (Команда)
+ * - Mediator (Посередник)
+ * - Memento (Знімок)
+ * - Observer (Спостерігач)
+ * - State (Стан)
+ * - Strategy (Стратегія)
+ * - Template Method (Шаблонний метод)
+ * - Visitor (Відвідувач)
+ * - Iterator (Ітератор)
+ * 
+ * 
+ * 
+ */
+
+//var chainClientCode = new ChainOfResponsibilityClientCode();
+//chainClientCode.Run();
+
+//var commandClientCode = new CommandClientCode();
+//commandClientCode.Run();
 
