@@ -345,6 +345,7 @@ notificationFacade.SendUrgentPushWithSms("Urgent!", "This is an urgent message."
  * - Chain of Responsibility (Ланцюг відповідальності)
  * - Command (Команда)
  * - Mediator (Посередник)
+ * 
  * - Memento (Знімок)
  * - Observer (Спостерігач)
  * - State (Стан)
@@ -363,3 +364,12 @@ notificationFacade.SendUrgentPushWithSms("Urgent!", "This is an urgent message."
 //var commandClientCode = new CommandClientCode();
 //commandClientCode.Run();
 
+//var mementoClientCode = new MementoClientCode();
+//mementoClientCode.Run();
+
+//var observerClientCode = new ObserverClientCode();
+//observerClientCode.Run();
+
+
+var stateClientCode = new StateClientCode();
+stateClientCode.Run();
